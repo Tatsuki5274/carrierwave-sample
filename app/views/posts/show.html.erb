@@ -3,8 +3,15 @@
 <p>
   <p>Datum:</p>
   <p><%= @post.datum %></p>
+
   <p><%= image_tag @post.avatar.to_s %></p>
-  <p><%= audio_tag @post.audio.url, :controls => true, id: :audio %></p>
+  <% @post.avatars.each do |avatar| %>
+  	<%= image_tag avatar.to_s %>
+  <% end %>
+  
+  <% if @post.audio.present? %>
+  	<p><%= audio_tag @post.audio.url, :controls => true, id: :audio %></p>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
