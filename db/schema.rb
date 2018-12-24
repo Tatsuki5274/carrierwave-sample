@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_24_041124) do
+ActiveRecord::Schema.define(version: 2018_12_24_055850) do
 
   create_table "posts", force: :cascade do |t|
     t.string "datum"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_12_24_041124) do
     t.string "audio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatars"
   end
 
   create_table "users", force: :cascade do |t|
