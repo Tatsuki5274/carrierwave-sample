@@ -3,13 +3,11 @@ class AvatarsUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   storage :file
-=begin
   after :store, :encrypt_file
 
   def encrypt_file(file)
     Carrierwave::EncrypterDecrypter::Uploader.encrypt(self)
   end
-=end
   # Choose what kind of storage to use for this uploader:
   # storage :fog
 

@@ -6,6 +6,11 @@ class AudioUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   storage :file
+  after :store, :encrypt_file
+
+  def encrypt_file(file)
+    Carrierwave::EncrypterDecrypter::Uploader.encrypt(self)
+  end
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
