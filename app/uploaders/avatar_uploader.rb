@@ -1,10 +1,14 @@
 class AvatarUploader < CarrierWave::Uploader::Base
+  storage :file
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+  after :store, :encrypt_file
 
+  def encrypt_file(file)
+    Carrierwave::EncrypterDecrypter::Uploader.encrypt(self)
+  end
   # Choose what kind of storage to use for this uploader:
-  storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.

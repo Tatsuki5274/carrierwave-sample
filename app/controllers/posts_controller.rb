@@ -10,6 +10,14 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    #元の場所に複合されたオブジェクトを配置
+    Carrierwave::EncrypterDecrypter::Downloader.decrypt(@post,mounted_as: :avatar)
+    image_path = @post.avatar.path
+    File.open(image_path, 'r') do |f|
+      #複合ファイルをブラウザにinlineで送信する
+      send_data f.read, type: MIME::Types.type_for(image_path).first.content_type, disposition: :inline, :filename => File.basename(image_path)
+    end
+    File.unlink(image_path)
   end
 
   # GET /posts/new
